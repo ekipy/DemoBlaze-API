@@ -8,17 +8,17 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.en.Then;
-import demoblaze.pages.SignUp;
+import demoblaze.pages.Login;
 import demoblaze.util.DriverFactory;
 
 public class SignUpStep extends DriverFactory {
     WebDriver driver;
-    SignUp signUpPage;
+    Login signUpPage;
 
     @Before
     public void setUp() {
         driver = DriverFactory.createDriver(false); // Set to true for headless mode
-        signUpPage = new SignUp(driver);
+        signUpPage = new Login(driver);
         System.out.println("Setting up the test environment");
     }
 
