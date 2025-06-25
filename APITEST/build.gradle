@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'io.rest-assured:rest-assured:5.4.0'
+    testImplementation 'org.testng:testng:7.10.1'
+    testImplementation 'io.qameta.allure:allure-junit4:2.24.0'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+    testImplementation 'io.qameta.allure:allure-junit5:2.24.0'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.12'
+
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "failed", "skipped", "standardOut", "standardError"
+        showStandardStreams = true
+    }
+
+    finalizedBy 'allureReport'
+}
+
+allure {
+    version = '2.24.0'
+    autoconfigure = true
+    aspectjweaver = true
+}
+
+task runApiTest(type: Test) {
+    group = 'verification'
+    description = 'Run API Tests with TestNG'
+    useTestNG()
+}
+
+tasks.named("allureReport") {
+    doFirst {
+        delete file("${buildDir}/reports/allure-report")
+        delete file("${buildDir}/allure-results")
+    }
+}

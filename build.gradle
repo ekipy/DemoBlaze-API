@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal() // ✅ WAJIB untuk akses plugin seperti Allure
+    }
+}

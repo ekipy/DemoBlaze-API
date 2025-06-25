@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure'
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.seleniumhq.selenium:selenium-java:4.20.0'
+    testImplementation 'io.cucumber:cucumber-java:7.14.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.14.0'
+    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.21.0'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
+    testImplementation 'io.qameta.allure:allure-junit4:2.24.0'
+
+}
+
+test {
+    useJUnit()
+    finalizedBy 'allureReport'
+}
+
+task runWebTest(type: Test) {
+    group = 'verification'
+    description = 'Run UI Tests with JUnit4'
+    useJUnit()
+}
+
+tasks.named("allureReport") {
+    doFirst {
+        delete file("${buildDir}/reports/allure-report")
+        delete file("${buildDir}/allure-results")
+    }
+}
