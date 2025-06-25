@@ -23,7 +23,8 @@ public class LoginStep extends DriverFactory {
 
     @Before
     public void setUp() {
-        driver = DriverFactory.createDriver(false); // Set to true for headless mode
+        boolean headless = System.getenv("CI") != null; // Check if running in CI environment
+        driver = createDriver(headless);
         signUpPage = new Login(driver);
         System.out.println("Setting up the test environment");
     }
@@ -31,10 +32,8 @@ public class LoginStep extends DriverFactory {
     @After
     public void tearDown() {
         // Close the WebDriver and clean up after tests
-        if (driver != null) {
-            driver.quit();
-            System.out.println("Test environment cleaned up");
-        }
+        DriverFactory.closeDriver();
+        System.out.println("Tearing down the test environment");
     }
 
     @Given("user berada pada halaman homepage")

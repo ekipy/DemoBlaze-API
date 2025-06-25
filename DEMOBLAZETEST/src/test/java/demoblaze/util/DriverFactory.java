@@ -12,9 +12,11 @@ public class DriverFactory {
     public static WebDriver createDriver(boolean headless) {
         ChromeOptions options = new ChromeOptions();
         if (headless) {
-            options.addArguments("--headless");
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--disable-gpu");
-            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--remote-allow-origins=*");
         }
 
         WebDriverManager.chromedriver().setup();
