@@ -1,0 +1,37 @@
+name: Allure Report CI/CD
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+##setup JDK
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
+## permission untuk menjalankan script merge allure report
+      - name: Give permission to script
+        run: chmod +x merge-allure.sh
+
+## menjalankan script untuk menggabungkan laporan Allure
+      - name: Run Allure tests and generate report
+        run: ./merge-allure.sh
+
+## deploy laporan Allure ke GitHub Pages
+      - name: Deploy to GitHub Pages 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./merged-allure-report
+          publish_branch: gh-pages
+          force_orphan: true
