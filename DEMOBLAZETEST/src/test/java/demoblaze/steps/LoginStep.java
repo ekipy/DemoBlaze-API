@@ -2,16 +2,22 @@ package demoblaze.steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
+import java.time.Duration;
+
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import io.cucumber.java.en.Then;
 import demoblaze.pages.Login;
 import demoblaze.util.DriverFactory;
 
-public class SignUpStep extends DriverFactory {
+public class LoginStep extends DriverFactory {
     WebDriver driver;
     Login signUpPage;
 
@@ -46,9 +52,24 @@ public class SignUpStep extends DriverFactory {
         signUpPage.signUp(username, password);
     }
 
-    @When("user click pada tombol login")
+    @And("user click pada tombol login")
     public void userClickPadaTombolLogin() {
         signUpPage.clickLoginButton();
+    }
+
+    @Then("user melihat alert message")
+    public void userMelihatAlertDenganPesan() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.alertIsPresent());
+
+        // Ambil dan tampilkan teks alert
+        String actualAlertText = signUpPage.getAlertText();
+        System.out.println("Alert text: " + actualAlertText);
+
+        // Verifikasi isi alert
+        Assert.assertEquals("Please fill out Username and Password.", actualAlertText);
+
+        signUpPage.acceptAlert();
     }
 
     @Then("user melihat nama pengguna {string}")
@@ -56,4 +77,6 @@ public class SignUpStep extends DriverFactory {
         String actualMessage = signUpPage.getSuccessLoginText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
+
+    
 }

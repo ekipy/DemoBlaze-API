@@ -1,0 +1,6 @@
+{
+  "name": "Manual Test",
+  "type": "JUnit",
+  "buildName": "Local run",
+  "url": "http://localhost"
+}

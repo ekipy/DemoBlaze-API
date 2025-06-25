@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Broken Tests",
+    "matchedStatuses": ["broken"]
+  },
+  {
+    "name": "Flaky Tests",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*flaky.*"
+  },
+  {
+    "name": "Assertion Failed",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*AssertionError.*"
+  },
+  {
+    "name": "Other Failures",
+    "matchedStatuses": ["failed"]
+  }
+]

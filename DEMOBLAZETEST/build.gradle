@@ -8,15 +8,22 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.20.0'
     testImplementation 'io.cucumber:cucumber-java:7.14.0'
     testImplementation 'io.cucumber:cucumber-junit:7.14.0'
-    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.21.0'
+    testImplementation 'io.qameta.allure:allure-cucumber7-jvm:2.24.0'
     testImplementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
-    testImplementation 'io.qameta.allure:allure-junit4:2.24.0'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.12'
 
 }
 
 test {
     useJUnit()
     finalizedBy 'allureReport'
+    doLast {
+        copy {
+            from "src/test/resources/allure"
+            into ("${buildDir}/allure-results")
+            include "environment.properties", "categories.json", "executor.json"
+        }
+    }
 }
 
 task runWebTest(type: Test) {
@@ -28,6 +35,5 @@ task runWebTest(type: Test) {
 tasks.named("allureReport") {
     doFirst {
         delete file("${buildDir}/reports/allure-report")
-        delete file("${buildDir}/allure-results")
     }
 }

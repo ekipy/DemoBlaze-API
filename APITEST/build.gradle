@@ -44,6 +44,5 @@ task runApiTest(type: Test) {
 tasks.named("allureReport") {
     doFirst {
         delete file("${buildDir}/reports/allure-report")
-        delete file("${buildDir}/allure-results")
     }
 }

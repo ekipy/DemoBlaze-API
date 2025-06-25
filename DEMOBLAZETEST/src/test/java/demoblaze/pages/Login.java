@@ -2,6 +2,7 @@ package demoblaze.pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,6 +36,25 @@ public class Login {
     public void signUp(String username, String password) {
         wait.until(ExpectedConditions.elementToBeClickable(loginUsername)).sendKeys(username);
         driver.findElement(loginPassword).sendKeys(password);
+    }
+
+    public boolean isAlertPresent() {
+        try {
+            driver.switchTo().alert();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public String getAlertText() {
+        Alert alert = driver.switchTo().alert();
+        return alert.getText();
+    }
+
+    public void acceptAlert() {
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
     }
 
     public void clickLoginButton() {

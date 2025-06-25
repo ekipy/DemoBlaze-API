@@ -1,7 +1,6 @@
 package demoblaze.runners;
 
 import org.junit.runner.RunWith;
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
@@ -10,12 +9,10 @@ import io.cucumber.junit.CucumberOptions;
     features = "src/test/resources/features",
     glue = {"demoblaze.steps", "demoblaze.util"},
     plugin = {
-        "pretty", 
-        "html:report/cucumber-reports.html",
-        "summary",
-        "json:build/cucumber-report.json",
+        "pretty",
         "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
-    }
+    },
+    monochrome = true
 )
 
 public class RunnerTest {}
