@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"35d7a4efb4010728241ccae949acf3e4","name":"apitest.ApiTest","statistic":{"failed":0,"broken":0,"skipped":0,"passed":5,"unknown":0,"total":5}},{"uid":"18844c1217a5f54b5229aae13c707118","name":"Sign In Functionality","statistic":{"failed":0,"broken":0,"skipped":0,"passed":4,"unknown":0,"total":4}}]}
