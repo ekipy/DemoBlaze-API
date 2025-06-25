@@ -19,6 +19,19 @@ jobs:
           distribution: 'temurin'
           java-version: 17
 
+## buat gradlew permission
+      - name: Give permission to gradlew
+        run: chmod +x gradlew
+
+      - name: Install Allure CLI
+        run: |
+          sudo apt update
+          sudo apt install -y unzip
+          curl -o allure.zip -L https://github.com/allure-framework/allure2/releases/download/2.25.0/allure-2.25.0.zip
+          unzip allure.zip
+          sudo mv allure-2.25.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+
 ## permission untuk menjalankan script merge allure report
       - name: Give permission to script
         run: chmod +x merge-allure.sh
