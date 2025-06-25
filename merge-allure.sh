@@ -23,4 +23,3 @@ cp -r APITEST/build/allure-results/* merged-allure-results/
 # Generate dan buka report
 echo "Generating Allure Report..."
 allure generate merged-allure-results --clean -o merged-allure-report
-allure open merged-allure-report
