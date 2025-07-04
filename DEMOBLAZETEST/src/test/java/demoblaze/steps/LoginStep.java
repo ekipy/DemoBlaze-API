@@ -71,6 +71,4 @@ public class LoginStep {
         String actualMessage = signUpPage.getSuccessLoginText();
         Assert.assertEquals(expectedMessage, actualMessage);
     }
-
-    
 }

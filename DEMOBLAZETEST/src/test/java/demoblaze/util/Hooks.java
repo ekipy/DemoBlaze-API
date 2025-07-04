@@ -4,12 +4,10 @@ import java.io.File;
 
 import org.openqa.selenium.WebDriver;
 
-import demoblaze.pages.Homepage;
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.cucumber.messages.types.Step;
 
 public class Hooks {
 

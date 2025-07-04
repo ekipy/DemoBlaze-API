@@ -2,7 +2,6 @@ package demoblaze.util;
 
 import io.cucumber.java.Scenario;
 
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
