@@ -29,8 +29,9 @@ public class Login {
     }
 
     public void clickLoginMenu() {
-        driver.findElement(loginMenu).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(loginUsername));
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+            .until(ExpectedConditions.elementToBeClickable(loginMenu)).click();
+        System.out.println("Clicked on the login menu");
     }
 
     public void signUp(String username, String password) {

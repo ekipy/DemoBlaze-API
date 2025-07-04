@@ -7,12 +7,13 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     features = "src/test/resources/features",
-    glue = {"demoblaze.steps", "demoblaze.util"},
+    glue = {"demoblaze"},
     plugin = {
         "pretty",
         "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
     },
-    monochrome = true
+    monochrome = true,
+    snippets = CucumberOptions.SnippetType.CAMELCASE
 )
 
 public class RunnerTest {}
