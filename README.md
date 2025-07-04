@@ -45,7 +45,7 @@ cd DemoBlaze-API
 ```
 
 ## 🧷 Struktur Projek
-
+```
 DEMOBLAZE-API/
   ├─ APITEST/
       └─ src/
@@ -71,6 +71,7 @@ merged-allure-results/            # (CI output)
 merged-allure-report/             # Report Allure (CI output)
 build/reports/pdf/                # PDF screenshot per scenario
 build/reports/screenshots/        # Screenshot PNG per step
+```
 
 ## 🔄 GitHub Actions & Deployment
 
