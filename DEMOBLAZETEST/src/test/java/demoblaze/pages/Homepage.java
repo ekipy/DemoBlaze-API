@@ -17,6 +17,7 @@ public class Homepage {
 
     By navItemsLocator = By.xpath("//div[@id='navbarExample']//a[contains(@class, 'nav-link')]");
     By categoryItemsLocator = By.cssSelector("div.list-group a#itemc");
+    By btnCart = By.xpath("//a[@id='cartur']");
 
     public Homepage(WebDriver driver) {
         this.driver = driver;
@@ -67,4 +68,44 @@ public class Homepage {
         System.out.println("Semua kategori terverifikasi: " + actualCategories);
     }
 
+    public void pilihKategori(String namaKategori) {
+        WebElement kategori = driver.findElement(By.xpath("//a[@id='itemc' and text()='" + namaKategori + "']"));
+        kategori.click();
+
+        if (namaKategori.equalsIgnoreCase("Laptops")) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='hrefch' and normalize-space(text())='MacBook air']")));
+        } else if (namaKategori.equalsIgnoreCase("Phones")) {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='hrefch' and normalize-space(text())='Samsung galaxy s6']")));
+        } else if (namaKategori.equalsIgnoreCase("Monitors")) {
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@class='hrefch' and normalize-space(text())='Apple monitor 24']")));
+        }
+    }
+
+    public void pilihProduk(String namaProduk) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("tbodyid")));
+        List<WebElement> produkList = driver.findElements(By.cssSelector("#tbodyid .card-title a"));
+
+        boolean produkDitemukan = false;
+        for (WebElement produk : produkList) {
+            System.out.println(" - " + produk.getText());
+            if (produk.getText().trim().toLowerCase().equalsIgnoreCase(namaProduk)){
+                wait.until(ExpectedConditions.elementToBeClickable(produk)).click();
+                produkDitemukan = true;
+                break;
+            }
+        }
+
+        if(!produkDitemukan){
+            throw new RuntimeException("Produk '" + namaProduk + "' tidak ditemukan di halaman.");
+        }
+    }
+
+    public void bukaHalaman(String halaman) {
+        if (halaman.equalsIgnoreCase("Cart")) {
+            wait.until(ExpectedConditions.elementToBeClickable(btnCart)).click();
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("tbodyid")));
+            System.out.println("[DEBUG] Cart page dibuka, tunggu isi keranjang...");
+        } 
+    }
 }
