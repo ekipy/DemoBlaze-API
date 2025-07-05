@@ -6,7 +6,7 @@ Ini adalah repository untuk **end‑to‑end automation testing** baik di sisi U
 
 ## 🎯 Tujuan Proyek
 
-- Mengotomasi pengujian fungsionalitas kunci (login, homepage dan cart(**soon**)) di UI
+- Mengotomasi pengujian fungsionalitas kunci (login, homepage dan checkout proses di UI
 - Mengotomasi pengujian API pada website API Testing restful-booker
 - Menghasilkan laporan hasil testing yang jelas & menarik (Allure)
 - Integrasi dengan CI/CD untuk validasi otomatis & publikasi laporan
@@ -28,21 +28,30 @@ Ini adalah repository untuk **end‑to‑end automation testing** baik di sisi U
 
 ## 🚀 Setup & Instalasi
 
-### Prasaratan (di local atau runner CI):
+### Prasaratan (di runner CI):
 
 - Java 11+ / JDK 17
 - Gradle wrapper (`./gradlew`)
 - Allure CLI (opsional untuk `allure open`)
 - Chrome + ChromeDriver (auto‑handled via WebDriverManager)
 
+### Prasaratan (di lokal):
+
+- Java 11+ / JDK 17
+- Install Visual Studio Code
+- Install Allure CLI (opsional untuk `allure open`)
+
 ## 🧪 Menjalankan Test & Laporan Allure
-### Jalankan tes + generate report + generate PDF
+### Jalankan tes + generate report + generate PDF dari lokal
 
 ```bash
 git clone https://github.com/ekipy/DemoBlaze-API.git
 cd DemoBlaze-API
-./merge-allure.sh
 ```
+- Setelah Prasaratan berhasil di install dan repo berhasil di clone ke lokal, jalankan command pada gitbash / CMD ```./merge-allure.sh``` untuk menjalankan tes dan merge report dan Generate PDF Screenshot
+- Setelah berhasil menjalankan tes dan generate Report serta PDF Screenshot, jalankan command berikut pada gitbash / CMD ```allure open merge-allure-report``` untuk melihat report dalam bentuk allure website
+- Screenshot PDF dapat dilihat pada 📁 : `build/reports/pdf`
+- Untuk melihat hasil screenshot bentuk JPG dapat dilihat pada 📁 : `build/reports/screenshots`
 
 ## 🧷 Struktur Projek
 ```
